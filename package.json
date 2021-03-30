@@ -1,0 +1,17 @@
+{
+  "name": "postcss-js-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:js && npm run test:tape"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "globby": "^11.0.3",
+    "postcss-js": "^3.0.3",
+    "postcss": "^8.1.0",
+    "rollup": "^2.44.0"
+  }
+}
