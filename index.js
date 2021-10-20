@@ -5,12 +5,14 @@ const rollup = require("rollup");
 const crypto = require("crypto");
 
 const pluginName = "postcss-js-functions";
+const exportsName = "styles";
+const atRule = "styles";
 
 function requireFromString(src, filename) {
   const mdl = new module.constructor();
   mdl.paths = module.paths;
   mdl._compile(src, filename);
-  return mdl.exports?.styles;
+  return mdl.exports?.[exportsName] ?? mdl.exports;
 }
 
 async function requireModule(inputFile) {
@@ -121,25 +123,6 @@ function insertMixin(helpers, mixins, rule, opts) {
     if (!opts.silent) {
       throw rule.error("Undefined mixin " + name);
     }
-  } else if (mixin.name === "define-mixin") {
-    let i;
-    let values = {};
-    for (i = 0; i < meta.args.length; i++) {
-      values[meta.args[i][0]] = params[i] || meta.args[i][1];
-    }
-
-    let proxy = new helpers.Root();
-    for (i = 0; i < mixin.nodes.length; i++) {
-      let node = mixin.nodes[i].clone();
-      delete node.raws.before;
-      proxy.append(node);
-    }
-
-    if (meta.content) {
-      processMixinContent(proxy, rule);
-    }
-
-    rule.parent.insertBefore(rule, proxy);
   } else if (typeof mixin === "object") {
     insertObject(rule, mixin);
   } else if (typeof mixin === "function") {
@@ -185,7 +168,7 @@ module.exports = (opts = {}) => {
           }
         },
         AtRule: {
-          mixin: (node, helpers) => {
+          [atRule]: (node, helpers) => {
             insertMixin(helpers, mixins, node, opts);
           },
         },
