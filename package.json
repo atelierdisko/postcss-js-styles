@@ -1,7 +1,7 @@
 {
-  "name": "postcss-js-styles",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@atelierdisko/postcss-js-styles",
+  "version": "0.1.0",
+  "description": "Transform Javascript objects and functions to insertable CSS rules",
   "main": "index.js",
   "scripts": {
     "test": "npm run test:js && npm run test:tape"
@@ -14,5 +14,12 @@
     "postcss": "^8.1.0",
     "postcss-js": "^3.0.3",
     "resolve-from": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atelierdisko/postcss-js-styles.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/atelierdisko"
   }
 }
