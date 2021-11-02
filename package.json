@@ -9,9 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "esbuild": "^0.13.12",
     "globby": "^11.0.3",
-    "postcss-js": "^3.0.3",
     "postcss": "^8.1.0",
-    "rollup": "^2.44.0"
+    "postcss-js": "^3.0.3",
+    "resolve-from": "^5.0.0"
   }
 }
